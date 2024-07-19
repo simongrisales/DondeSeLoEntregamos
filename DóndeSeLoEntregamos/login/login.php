@@ -1,10 +1,10 @@
 <?php
     include("conexion.php");
 
-    $user=$_POST["usuario"];
-    $pass=$_POST["contrasena"];
+    $user=$_POST["usuarioID"];
+    $pass=$_POST["password"];
 
-    $user=mysqli_query($conexion,"select * from empleados where cedula='$user' && contrasena='$pass' ");
+    $user=mysqli_query($conexion,"select * from usuarios where usuarioID='$user' && password='$password' ");
 
     if(mysqli_num_rows($user)>0){
         header("Location: admin.php");

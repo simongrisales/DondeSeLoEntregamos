@@ -304,14 +304,14 @@ ol {
 }
 
 .header__logo {
-  padding: 30px 0;
+  width: 50%;
 }
 .header__logo a {
   display: inline-block;
 }
 
 .header__nav__option {
-  text-align: right;
+  text-align: center;
   padding: 28px 0px;
 }
 
@@ -868,7 +868,8 @@ ol {
 }
 
 .footer__top__logo {
-  line-height: 40px;
+  width: 20%;
+  height: 20%;
 }
 .footer__top__logo a {
   display: inline-block;
