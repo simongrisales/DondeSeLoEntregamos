@@ -1,13 +1,22 @@
 <?php
-    include("conexion.php");
+    include("../config.php");
+    session_start();
 
-    $user=$_POST["usuarioID"];
-    $pass=$_POST["password"];
+    $userID=$_POST["userID"];
+    $password=$_POST["password"];
 
-    $user=mysqli_query($conexion,"select * from usuarios where usuarioID='$user' && password='$password' ");
+    $password=hash('sha512',$password);
+    //Comparamos la contraseña ingresada
+    //Con la de la base de datos
 
-    if(mysqli_num_rows($user)>0){
-        header("Location: admin.php");
+    $result=mysqli_query($link,"select name, lastname from users where userID='$userID' && password='$password'");
+
+    $userRecord = mysqli_fetch_array($result);
+
+    if(mysqli_num_rows($result)>0){
+        $_SESSION['role'] = ["client"];
+        $_SESSION['fullname'] = $userRecord["name"] . " " . $userRecord["lastname"];
+        header("Location: locker.php");
     }else{
         header("Location: login.html");
     }

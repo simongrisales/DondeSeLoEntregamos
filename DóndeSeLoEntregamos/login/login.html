@@ -15,32 +15,25 @@
         rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/login.css" type="text/css">
 </head>
 <body>
-    <form action="login.php" method="post" class="login">
-        <h1>Iniciar sesión</h1>
-        <table>
-            <tr>
-                <td>Usuario</td>
-                <td><input type="text" name="usuarioID"></td>
-            </tr>
-            <tr>
-                <td>Contraseña</td>
-                <td><input type="text" name="password"></td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td><input type="submit"></td>
-            </tr>
-        </table>
-    </form>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-box login-box">
+                <form action="login.php" method="post" class="login">
+                    <h2>Iniciar sesión</h2>
+                    <div class="textbox">
+                        <input type="text" placeholder="Usuario (Documento)" name="userID" required>
+                    </div>
+                    <div class="textbox">
+                        <input type="password" placeholder="Contraseña" name="password" required>
+                    </div>
+                    <input type="submit" class="btn" value="Ingresar">
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>

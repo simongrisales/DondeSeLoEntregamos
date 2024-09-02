@@ -15,44 +15,33 @@
         rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/sign-up.css" type="text/css">
 </head>
 <body>
-    <form action="datos.php" method="post" class="sign-up">
-        <h1>Registrate</h1>
-        <table>
-            <tr>
-                <td>Cedula</td>
-                <td><input type="number" name="cedula"></td>
-            </tr>
-            <tr>
-                <td>Nombre</td>
-                <td><input type="text" name="nombre"></td>
-            </tr>
-            <tr>
-                <td>Cargo</td>
-                <td><input type="text" name="cargo"></td>
-            </tr>
-            <tr>
-                <td>Fecha de nacimiento</td>
-                <td><input type="date" name="fechaN"></td>
-            </tr>
-            <tr>
-                <td>Correo</td>
-                <td><input type="email" name="correo"></td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td><input type="submit"></td>
-            </tr>
-        </table>
-    </form>
+    <div class="form-box signup-box">
+        <h2>Registrate</h2>
+        <form action="sign-up.php" method="post" class="sign-up">
+            <div class="textbox">
+                <input type="number" placeholder="Documento" name="userID" required>
+            </div>
+            <div class="textbox">
+                <input type="text" placeholder="Nombres" name="name" required>
+            </div>
+            <div class="textbox">
+                <input type="text" placeholder="Apellidos" name="lastname" required>
+            </div>
+            <div class="textbox">
+                <input type="email" placeholder="Correo Electrónico" name="email" required>
+            </div>
+            <div class="textbox">
+                <input type="text" placeholder="Teléfono" name="phone" required>
+            </div>
+            <div class="textbox">
+                <input type="password" placeholder="Contraseña" name="password" required>
+            </div>
+            <input type="submit" class="btn" value="Registrar">
+        </form>
+    </div>
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
