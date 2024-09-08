@@ -1,23 +1,52 @@
 <?php
-    include("../config.php");
-    session_start();
+include("../config.php");
 
-    $userID=$_POST["userID"];
-    $password=$_POST["password"];
+// Sanitizar entradas para evitar inyección SQL
+$userID = mysqli_real_escape_string($link, $_POST["userID"]);
+$password = $_POST["password"]; // No encriptamos aquí, usamos password_verify más adelante
 
-    $password=hash('sha512',$password);
-    //Comparamos la contraseña ingresada
-    //Con la de la base de datos
+// Consulta SQL para obtener el usuario
+$query = "SELECT * FROM users WHERE userID='$userID'";
+$result = mysqli_query($link, $query);
 
-    $result=mysqli_query($link,"select name, lastname from users where userID='$userID' && password='$password'");
+// Verificar si la consulta SQL tuvo éxito
+if (!$result) {
+    header("Location: login.html?error=" . urlencode("Error en la consulta: " . mysqli_error($link)));
+    exit;
+}
 
-    $userRecord = mysqli_fetch_array($result);
+// Verificar si el usuario existe y gestionar la sesión
+if (mysqli_num_rows($result) > 0) {
+    $fila = mysqli_fetch_assoc($result);
+    $hashedPassword = $fila['password']; // La contraseña encriptada en la base de datos
+    $role = $fila['role'];
+    $name = $fila['name'];
+    $lastname = $fila['lastname'];
+    
+    if (password_verify($password, $hashedPassword)) {
+        session_start();
+        $_SESSION['Nombre'] = $name;
+        $_SESSION['Apellido'] = $lastname;
+        $_SESSION['userID'] = $userID; // Guarda userID en la sesión
 
-    if(mysqli_num_rows($result)>0){
-        $_SESSION['role'] = ["client"];
-        $_SESSION['fullname'] = $userRecord["name"] . " " . $userRecord["lastname"];
-        header("Location: locker.php");
-    }else{
-        header("Location: login.html");
+        if ($role === 'admin') {
+            header("Location: ../superadmin.php");
+        } elseif ($role === 'client') {
+            header("Location: locker.php");
+        } else {
+            header("Location: login.html?error=" . urlencode("Rol de usuario no reconocido."));
+        }
+        exit;
+    } else {
+        // Contraseña incorrecta
+        header("Location: login.html?error=" . urlencode("Contraseña incorrecta."));
+        exit;
     }
+} else {
+    // Usuario no encontrado
+    header("Location: login.html?error=" . urlencode("Usuario no encontrado."));
+    exit;
+}
 ?>
+
+

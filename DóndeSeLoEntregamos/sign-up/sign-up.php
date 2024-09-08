@@ -1,20 +1,37 @@
 <?php
-    include('../config.php');
+include('../config.php');
 
-    $userID=$_POST["userID"];
-    $name=$_POST["name"];
-    $lastname=$_POST["lastname"];
-    $email=$_POST["email"];
-    $phone=$_POST["phone"];
-    $password=$_POST["password"];
-    $roleID=["client"];
+// Obtener datos del formulario
+$userID = $_POST["userID"];
+$name = $_POST["name"];
+$lastname = $_POST["lastname"];
+$email = $_POST["email"];
+$phone = $_POST["phone"];
+$password = $_POST["password"];
+$role = 'client';
 
-    $password=hash('sha512',$password);
-    //Contraseña encriptada
+// Encriptar la contraseña con password_hash
+$password = password_hash($password, PASSWORD_BCRYPT);
 
-    mysqli_query($link,"INSERT INTO users (userID,name,lastname,email,phone,password,roleID) values($userID,'$name','$lastname','$email','$phone',$password,'$roleID')")or die("Problemas al insertar".mysqli_error($link));
+// Preparar la consulta para insertar datos en la base de datos
+$stmt = $link->prepare("INSERT INTO users (userID, name, lastname, email, phone, password, role) VALUES (?, ?, ?, ?, ?, ?, ?)");
+if (!$stmt) {
+    die("Error en la preparación de la consulta: " . $link->error);
+}
 
-    echo "<script>alert('Se guardaron los datos correctamente')</script>";
+// Enlazar los parámetros
+$stmt->bind_param("issssss", $userID, $name, $lastname, $email, $phone, $password, $role);
 
+// Ejecutar la consulta
+if ($stmt->execute()) {
+    echo "<script>alert('Se guardaron los datos correctamente');</script>";
     header("Location: ../login/login.html");
+    exit();
+} else {
+    die("Problemas al insertar: " . $stmt->error);
+}
+
+// Cerrar la consulta y la conexión
+$stmt->close();
+$link->close();
 ?>
