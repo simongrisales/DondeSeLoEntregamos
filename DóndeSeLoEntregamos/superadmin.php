@@ -9,10 +9,9 @@
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Sharp" rel="stylesheet">
-    <link rel="stylesheet" href="css/dark.css">
-    <link rel="stylesheet" href="css/light.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/light.css">
+    <link rel="stylesheet" href="./css/dark.css">
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
@@ -46,8 +45,8 @@
                     while ($item = mysqli_fetch_array($result)) { ?>
 
                         <md-list-item>
-                            <div slot="start"><?php echo $item['name'] ?></div>
-                            <div slot="headline"><?php echo $item['lastname'] ?></div>
+                            <div slot="headline"><?php echo $item['name']." ".$item['lastname'] ?></div>
+                            <div slot="supporting-text"><?php echo $item['userID'] ?></div>
                             <div slot="supporting-text"><?php echo $item['email'] ?></div>
                             <div slot="supporting-text"><?php echo $item['phone'] ?></div>
 

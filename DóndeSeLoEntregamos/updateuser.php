@@ -12,6 +12,8 @@ $email = "";
 $email_err = "";
 $phone = "";
 $phone_err = "";
+$role = "";
+$role_err = "";
 $password = "";
 $password_err = "";
 $password_old = "";
@@ -43,7 +45,7 @@ if (isset($_POST["userID"])) {
         } elseif (!filter_var($input_lastname, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/")))) {
             $lastname_err = "Por favor ingrese un apellido válido.";
         } else {
-            $latname = $input_latname;
+            $lastname = $input_lastname;
         }
 
         // Validate email
@@ -66,6 +68,16 @@ if (isset($_POST["userID"])) {
             $phone = $input_phone;
         }
 
+        // Validate role
+        $input_role = trim($_POST["role"]);
+        if (empty($input_role)) {
+            $role_err = "Por favor ingrese un rol.";
+        } elseif (!filter_var($input_role, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/")))) {
+            $role_err = "Por favor ingrese un rol válido.";
+        } else {
+            $role = $input_role;
+        }
+
         // Validate password
         $input_password = trim($_POST["password"]);
         if (empty($input_password)) {
@@ -84,13 +96,13 @@ if (isset($_POST["userID"])) {
         }
 
         // Check input errors before inserting in database
-        if (empty($name_err) && empty($lastname_err) && empty($email_err) && empty($phone_err) && empty($password_err) && empty($password_old_err)) {
+        if (empty($name_err) && empty($lastname_err) && empty($email_err) && empty($phone_err) && empty($role_err) && empty($password_err) && empty($password_old_err)) {
 
             // Encrypt the password
-            $password = hash('sha512', $password);
+            $password = password_hash($password, PASSWORD_BCRYPT);
 
             // Prepare an update statement
-            $sql = "UPDATE users SET name='$name', lastname='$lastname', email='$email', phone='$phone', password='$password' WHERE userID = $userID";
+            $sql = "UPDATE users SET name='$name', lastname='$lastname', email='$email', phone='$phone', role='$role', password='$password' WHERE userID = $userID";
 
             if (mysqli_execute_query($link, $sql)) {
                 // Records updated successfully. Redirect to landing page
@@ -124,6 +136,7 @@ if (isset($_POST["userID"])) {
                     $lastname = $users["lastname"];
                     $email = $users["email"];
                     $phone = $users["phone"];
+                    $role = $users["role"];
                     $password_database = $users["password"];
                 } else {
                     header("location: error.php");
@@ -158,8 +171,6 @@ if (isset($_POST["userID"])) {
     <link rel="stylesheet" href="css/dark.css">
     <link rel="stylesheet" href="css/light.css">
     <link rel="stylesheet" href="css/create.css">
-    <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body>
@@ -175,7 +186,7 @@ if (isset($_POST["userID"])) {
             <input type="hidden" name="password_database" value="<?php echo $password_database; ?>">
 
             <section>
-                <md-icon>name</md-icon>
+                <md-icon>person</md-icon>
                 <md-outlined-text-field label="Nombre"
                     type="text"
                     name="name"
@@ -186,7 +197,7 @@ if (isset($_POST["userID"])) {
             </section>
 
             <section>
-                <md-icon>lastname</md-icon>
+                <md-icon>person_edit</md-icon>
                 <md-outlined-text-field label="Apellido"
                     type="text"
                     name="lastname"
@@ -210,11 +221,22 @@ if (isset($_POST["userID"])) {
             <section>
                 <md-icon>phone</md-icon>
                 <md-outlined-text-field label="Teléfono"
-                    type="text"
+                    type="varchar(20)"
                     name="phone"
                     value="<?php echo $phone ?>"
                     <?php if ($phone_err) echo 'error error-text="' . $phone_err . '">' ?>>
                     <?php if ($phone_err) echo '<md-icon slot="trailing-icon">error</md-icon>' ?>
+                </md-outlined-text-field>
+            </section>
+
+            <section>
+                <md-icon>badge</md-icon>
+                <md-outlined-text-field label="Role"
+                    type="enum('admin', 'client')"
+                    name="role"
+                    value="<?php echo $role ?>"
+                    <?php if ($role_err) echo 'error error-text="' . $role_err . '">' ?>>
+                    <?php if ($role_err) echo '<md-icon slot="trailing-icon">error</md-icon>' ?>
                 </md-outlined-text-field>
             </section>
 

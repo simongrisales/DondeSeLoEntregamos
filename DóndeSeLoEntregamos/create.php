@@ -13,6 +13,8 @@ $email = "";
 $email_err = "";
 $phone = "";
 $phone_err = "";
+$role = "";
+$role_err = "";
 $password = "";
 $pass_err = "";
 
@@ -68,6 +70,16 @@ if (isset($_SERVER["REQUEST_METHOD"])) {
             $phone = $input_phone;
         }
 
+        // Validate role
+        $input_role = trim($_POST["role"]);
+        if (empty($input_role)) {
+            $phone_err = "Por favor ingrese el rol.";
+        } elseif (!filter_var($input_role, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/")))) {
+            $role_err = "Por favor ingrese un rol válido.";
+        } else {
+            $role = $input_role;
+        }
+
         // Validate password
         $input_password = trim($_POST["password"]);
         if (empty($input_password)) {
@@ -77,13 +89,13 @@ if (isset($_SERVER["REQUEST_METHOD"])) {
         }
 
         // Check input errors before inserting in database
-        if (empty($userID_err) && empty($name_err) && empty($lastname_err) && empty($email_err) && empty($phone_err) && empty($password_err)) {
+        if (empty($userID_err) && empty($name_err) && empty($lastname_err) && empty($email_err) && empty($phone_err) && empty($role_err) && empty($password_err)) {
 
             // Encrypt the password
-            $password = hash('sha512', $password);
+            $password = password_hash($password, PASSWORD_BCRYPT);
 
             // Prepare an insert statement
-            $sql = "INSERT INTO users (userID,name,lastname,email,phone,password) values($userID,'$name','$lastname','$email','$phone',$password)";
+            $sql = "INSERT INTO users (userID,name,lastname,email,phone,role,password) values($userID,'$name','$lastname','$email','$phone','$role','$password')";
 
             if (mysqli_execute_query($link, $sql)) {
 
@@ -115,8 +127,6 @@ if (isset($_SERVER["REQUEST_METHOD"])) {
     <link rel="stylesheet" href="css/dark.css">
     <link rel="stylesheet" href="css/light.css">
     <link rel="stylesheet" href="css/create.css">
-    <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body>
@@ -131,7 +141,7 @@ if (isset($_SERVER["REQUEST_METHOD"])) {
         <form action="create.php" method="post">
 
             <section>
-                <md-icon>document</md-icon>
+                <md-icon>id_card</md-icon>
                 <md-outlined-text-field label="Documento"
                     type="number"
                     name="userID"
@@ -142,7 +152,7 @@ if (isset($_SERVER["REQUEST_METHOD"])) {
             </section>
 
             <section>
-                <md-icon>name</md-icon>
+                <md-icon>person</md-icon>
                 <md-outlined-text-field label="Nombre"
                     type="text"
                     name="name"
@@ -153,7 +163,7 @@ if (isset($_SERVER["REQUEST_METHOD"])) {
             </section>
 
             <section>
-                <md-icon>lastname</md-icon>
+                <md-icon>person_edit</md-icon>
                 <md-outlined-text-field label="Apellido"
                     type="text"
                     name="lastname"
@@ -177,11 +187,22 @@ if (isset($_SERVER["REQUEST_METHOD"])) {
             <section>
                 <md-icon>phone</md-icon>
                 <md-outlined-text-field label="Teléfono"
-                    type="text"
+                    type="varchar(20)"
                     name="phone"
                     value="<?php echo $phone ?>"
                     <?php if ($phone_err) echo 'error error-text="' . $phone_err . '">' ?>>
                     <?php if ($phone_err) echo '<md-icon slot="trailing-icon">error</md-icon>' ?>
+                </md-outlined-text-field>
+            </section>
+
+            <section>
+                <md-icon>badge</md-icon>
+                <md-outlined-text-field label="Role"
+                    type="enum('admin', 'client')"
+                    name="role"
+                    value="<?php echo $role ?>"
+                    <?php if ($role_err) echo 'error error-text="' . $role_err . '">' ?>>
+                    <?php if ($role_err) echo '<md-icon slot="trailing-icon">error</md-icon>' ?>
                 </md-outlined-text-field>
             </section>
 

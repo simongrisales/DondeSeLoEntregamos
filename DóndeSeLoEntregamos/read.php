@@ -49,7 +49,6 @@ if (isset($_GET["userID"])) {
     <link rel="stylesheet" href="css/dark.css">
     <link rel="stylesheet" href="css/light.css">
     <link rel="stylesheet" href="css/read.css">
-    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -60,20 +59,20 @@ if (isset($_GET["userID"])) {
             <md-elevation></md-elevation>
             <h1 class="md-typescale-headline-large">Información del usuario</h1>
             <section>
-                <md-icon>name</md-icon>
-                <h2 class="md-typescale-body-large"><?php echo $name ?></h2>
+                <md-icon>id_card</md-icon>
+                <h3 class="md-typescale-body-large"><?php echo $userID ?></h3>
             </section>
             <section>
-                <md-icon>lastname</md-icon>
-                <h2 class="md-typescale-body-large"><?php echo $lastname ?></h2>
+                <md-icon>person</md-icon>
+                <h3 class="md-typescale-body-large"><?php echo $name ." ".$lastname ?></h3>
             </section>
             <section>
                 <md-icon>email</md-icon>
-                <h2 class="md-typescale-body-large"><?php echo $email ?></h2>
+                <h3 class="md-typescale-body-large"><?php echo $email ?></h3>
             </section>
             <section>
                 <md-icon>phone</md-icon>
-                <h2 class="md-typescale-body-large"><?php echo $phone ?></h2>
+                <h3 class="md-typescale-body-large"><?php echo $phone ?></h3>
             </section>
             <footer>
                 <a href="superadmin.php">

@@ -916,24 +916,6 @@ ol {
   border-color: #e1e1e1;
 }
 
-/*---------------------
-  Dark and light
------------------------*/
-.light {
-  --body-bg-color: ;
-  --main-bg-color: #fff;
-  --main-shadow-color: ;
-  --main-font-color: #100028;
-  --divider-bg-color: ;
-}
-
-.dark {
-  --body-bg-color: #100028;
-  --main-bg-color: ;
-  --main-shadow-color: ;
-  --main-font-color: ;
-}
-
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 @media only screen and (min-width: 1200px) {
   .container {
