@@ -19,6 +19,7 @@ if (isset($_GET["userID"])) {
                 $lastname = $users["lastname"];
                 $email = $users["email"];
                 $phone = $users["phone"];
+                $role = $users["role"];
             } else {
                 // URL doesn't contain valid id parameter. Redirect to error page
                 header("location: error.php");
@@ -73,6 +74,10 @@ if (isset($_GET["userID"])) {
             <section>
                 <md-icon>phone</md-icon>
                 <h3 class="md-typescale-body-large"><?php echo $phone ?></h3>
+            </section>
+            <section>
+                <md-icon>badge</md-icon>
+                <h3 class="md-typescale-body-large"><?php echo $role ?></h3>
             </section>
             <footer>
                 <a href="superadmin.php">
