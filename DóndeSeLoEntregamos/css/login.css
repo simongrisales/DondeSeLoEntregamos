@@ -3,7 +3,7 @@
   padding: 0%;
 }
 body {
-  background: #f0f2f5;
+  background: #100028;
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
@@ -65,5 +65,5 @@ h2 {
 }
 
 .login-box {
-  background: #f7f7f7;
+  background: #e7f1ff;
 }/*# sourceMappingURL=login.css.map */
