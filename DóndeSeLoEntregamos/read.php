@@ -10,7 +10,7 @@ if (isset($_GET["userID"])) {
         // Prepare a select statement
         $sql = "SELECT * FROM users WHERE userID = $userID";
 
-        if ($result = mysqli_execute_query($link, $sql)) {
+        if ($result = mysqli_query($link, $sql)) {
             if (mysqli_num_rows($result) == 1) {
                 $users = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
