@@ -1,0 +1,61 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #100028;
+  background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
+  margin: 0;
+}
+
+h2 {
+  color: #100028;
+}
+
+.form-box {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  border: 2px solid #100028;
+  width: 100%;
+  max-width: 400px; 
+  position: relative; 
+}
+
+.textbox input {
+  background-color: #100028;
+  color: white;
+  border: none;
+  margin-bottom: 9px; 
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.textbox input::placeholder {
+  color: #ccc;
+}
+
+.btn {
+  background-color: #100028;
+  color: white;
+}
+
+.btn:hover {
+  background-color: #654596;
+}
+
+.emoji {
+  font-size: 60px; 
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
