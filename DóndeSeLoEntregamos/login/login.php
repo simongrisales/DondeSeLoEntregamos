@@ -32,7 +32,7 @@ if (mysqli_num_rows($result) > 0) {
         if ($role === 'admin') {
             header("Location: ../superadmin.php");
         } elseif ($role === 'client') {
-            header("Location: locker.php");
+            header("Location: ../locker.php");
         } else {
             header("Location: login.html?error=" . urlencode("Rol de usuario no reconocido."));
         }
@@ -48,5 +48,3 @@ if (mysqli_num_rows($result) > 0) {
     exit;
 }
 ?>
-
-

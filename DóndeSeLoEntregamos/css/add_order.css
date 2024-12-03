@@ -1,0 +1,107 @@
+:root {
+    --md-ref-typeface-brand: Inter;
+    --md-ref-typeface-plain: Rubik;
+
+    /* Colores */
+    --body-bg-color: #121212; /* Color de fondo general */
+    --main-bg-color: #1e1e1e; /* Color de fondo principal */
+    --main-font-color: #ffffff; /* Color del texto principal */
+    --md-sys-color-primary: #6200ea; /* Color primario */
+    --md-sys-color-primary-container: #bb86fc; /* Color contenedor primario */
+    --md-sys-color-outline-variant: #424242; /* Color del borde */
+    --main-shadow-color: rgba(0, 0, 0, 0.5); /* Color de sombra */
+}
+
+body {
+    background-color: var(--body-bg-color);
+    margin: 0;
+    font-family: var(--md-ref-typeface-plain), sans-serif;
+    color: var(--main-font-color); /* Color del texto en el cuerpo */
+}
+
+main {
+    margin: 2rem auto;
+    position: relative;
+    background-color: var(--main-bg-color);
+    color: var(--main-font-color);
+    --md-elevation-level: 2;
+    --md-sys-color-shadow: var(--main-shadow-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 22rem;
+    padding: 3rem 4rem;
+    border-radius: 2rem;
+    box-shadow: 0 4px 8px var(--main-shadow-color);
+}
+
+h1 {
+    text-align: center;
+    margin: 2rem 0;
+    color: var(--main-font-color);
+}
+
+.icon-title {
+    --md-icon-size: 2rem;
+    vertical-align: middle;
+}
+
+p {
+    text-align: justify;
+    color: var(--main-font-color);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+form section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+form footer {
+    margin: 0 auto;
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+}
+
+md-outlined-text-field {
+    flex: 1;
+    background-color: #2b2b2b; /* Fondo del campo de texto */
+    color: var(--main-font-color); /* Color del texto */
+    border: 1px solid var(--md-sys-color-outline-variant); /* Borde */
+    border-radius: 0.5rem; /* Bordes redondeados */
+    padding: 0.5rem; /* Espaciado interno */
+}
+
+md-outlined-text-field input {
+    color: var(--main-font-color); /* Color del texto de entrada */
+}
+
+md-elevated-button,
+md-filled-button {
+    border-radius: 0.5rem; /* Bordes redondeados para los botones */
+    padding: 0.5rem 1rem; /* Espaciado interno */
+    background-color: var(--md-sys-color-primary); /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    transition: background-color 0.3s ease; /* Transición para el hover */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor */
+}
+
+md-elevated-button:hover,
+md-filled-button:hover {
+    background-color: var(--md-sys-color-primary-container); /* Color al pasar el cursor */
+}
+
+md-elevated-button:disabled,
+md-filled-button:disabled {
+    background-color: #6d6d6d; /* Color para botones deshabilitados */
+    cursor: not-allowed; /* Cambia el cursor */
+}

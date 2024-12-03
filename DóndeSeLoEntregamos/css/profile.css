@@ -1,0 +1,97 @@
+body {
+    background-color: #121212; /* Color oscuro de fondo */
+    color: #ffffff; /* Texto blanco */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #3a0ca3; /* Color morado oscuro */
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #f72585; /* Borde inferior brillante */
+}
+
+.user-menu {
+    margin-top: 10px;
+}
+
+.user-menu a {
+    color: #f72585; /* Color para los enlaces */
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.user-menu a:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+main {
+    padding: 30px;
+    max-width: 600px;
+    margin: 20px auto; /* Margen superior */
+    background-color: #1e1e2f; /* Fondo del formulario */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra suave */
+}
+
+h1 {
+    color: #f72585; /* Color para el título */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 15px 0 5px;
+    font-size: 1.1em;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #f72585; /* Borde morado */
+    border-radius: 5px;
+    background-color: #121212; /* Color de fondo de los inputs */
+    color: #ffffff; /* Texto blanco en los inputs */
+    transition: border-color 0.3s; /* Suavizar el cambio de borde */
+}
+
+input:focus {
+    outline: none;
+    border-color: #ffffff; /* Cambia el borde al hacer foco */
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #f72585; /* Color del botón */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s; /* Suavizar el cambio de fondo */
+}
+
+button:hover {
+    background-color: #ff5e96; /* Color al pasar el mouse */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra al pasar el mouse */
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #cccccc;
+}
+
+footer a {
+    color: #f72585; /* Color para el enlace en el pie de página */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}

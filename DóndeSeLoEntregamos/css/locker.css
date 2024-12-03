@@ -1,70 +1,64 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+body {
+  background-color: #121212;
+  color: #e0e0e0;
 }
 
 header {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #1f1b24;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #b39ddb;
+}
+
+.header-content h1 {
+  font-size: 24px;
+  color: #b39ddb;
+}
+
+.user-menu a {
+  color: #b39ddb;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.user-menu a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
   padding: 10px;
-  border-radius: 8px;
-  text-align: center;
+  text-align: left;
+  border-bottom: 1px solid #333;
 }
 
-h1 {
-  margin: 0;
+th {
+  background-color: #272727;
+  color: #b39ddb;
 }
 
-section {
-  margin: 20px 0;
+tr:nth-child(even) {
+  background-color: #1f1f1f;
 }
 
-.address-list, .order-list {
-  margin-bottom: 20px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
+h2 {
+  color: #b39ddb;
 }
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  padding: 5px 0;
-}
-
-footer {
-  background-color: #e9ecef;
-  padding: 10px;
-  text-align: center;
-  border-radius: 8px;
-}
-
-input[type=submit] {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-input[type=submit]:hover {
-  background-color: #0062cc;
-}/*# sourceMappingURL=locker.css.map */
